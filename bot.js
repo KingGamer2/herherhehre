@@ -20,28 +20,11 @@ const gif = require("gif-search");
 
 const client = new Discord.Client({disableEveryone: true});
 
-const prefix = "=";
+const prefix = "!";
 /////////////////////////
 ////////////////////////
 //////////////////////
 /////////////////////////
-client.on('ready', () => {
-    console.log('I am ready!');
-});
-
-client.on('message', message => {
-    if (message.content === 'ping') {
-        message.reply('pong');
-      }
-});
-
-
-
-
-
-client.on('ready', () => {                           
-client.user.setGame(`=help | For Help List `,'https://www.youtube.com/kinggamer_th3');                                                                                                                                                                                                                                                                                                                                                                                                                            
-});
 ////////////////////////
 //////////////////////
 client.on('message', async msg => { 
@@ -270,108 +253,7 @@ function play(guild, song) {
 }
 
 
-   client.on('message', message => {
-	   if(message.content.startsWith(`${prefix}invite`)){
-		   if(!message.channel.guild) return message.channel.send("This Command is Just For Servers!")
-		   var embed = new Discord.RichEmbed()
-		   .setTitle(">> ClickHere To Add" + `${client.user.username}` + " <<")
-		   .setURL("https://discordapp.com/oauth2/authorize?client_id=" + `${client.user.id}` + "&scope=bot&permissions=8")
-		   .setTimestamp()
-		   .setFooter(`Requested By | ${message.author.username}`)
-		   .setColor("RANDOM")
-		   message.channel.send(":white_check_mark: | Check Your DM! تم الأرسال بلخاص")
-		   message.author.send({embed})
-	   }
-   });
- client.on('message', message => {
-     if (message.author.bot) return;
-if (message.content.startsWith(prefix + "uptime")) {
-    let uptime = client.uptime;
-
-    let days = 0;
-    let hours = 0;
-    let minutes = 0;
-    let seconds = 0;
-    let notCompleted = true;
-
-    while (notCompleted) {
-
-        if (uptime >= 8.64e+7) {
-
-            days++;
-            uptime -= 8.64e+7;
-
-        } else if (uptime >= 3.6e+6) {
-
-            hours++;
-            uptime -= 3.6e+6;
-
-        } else if (uptime >= 60000) {
-
-            minutes++;
-            uptime -= 60000;
-
-        } else if (uptime >= 1000) {
-            seconds++;
-            uptime -= 1000;
-
-        }
-
-        if (uptime < 1000)  notCompleted = false;
-
-    }
-
-    message.channel.send("`" + `${days} days, ${hours} hrs, ${minutes} , ${seconds} sec` + "`");
-
-
-}
-});
-
-
-client.on('message', message => {
-    if(message.content.startsWith(prefix+'help')) {
-   const embed = new Discord.RichEmbed()
-.setColor('RANDOM')
-        .setDescription(`**
-		__أوامر الموسيفة__
-
-『=play - لتشغيل أغنية برآبط أو بأسم』
-『=skip - لتجآوز الأغنية الحآلية』
-『=pause - إيقآف الأغنية مؤقتا』
-『=resume - لموآصلة الإغنية بعد إيقآفهآ مؤقتا』
-『=vol - لتغيير درجة الصوت 』
-『=stop - لإخرآج البوت من الروم』
-『=np - لمعرفة الأغنية المشغلة حآليا』
-『=queue - لمعرفة قآئمة التشغيل』
-		___أوامر اضافية___
-『=invite - لدعوة البوت الى سيرفرك』
-『=ping - لتشوف بنق البوت』
-『=uptime - لتشوف البوت كم صرله اون لاين』
-
-**`)
-    message.author.send(embed)
-}
-}) 
-
-
-
-  
-client.on('message', message => {
-                                if(!message.channel.guild) return;
-                        if (message.content.startsWith(prefix + "ping")) {
-                            if(!message.channel.guild) return;
-                            var msg = `${Date.now() - message.createdTimestamp}`
-                            var api = `${Math.round(client.ping)}`
-                            if (message.author.bot) return;
-                        let embed = new Discord.RichEmbed()
-                        .setAuthor(message.author.username,message.author.avatarURL)
-                        .setThumbnail('https://cdn.discordapp.com/avatars/368141321547808768/c42716e13cb850f9ad0930af699472d0.png?size=2048nk')
-                        .setColor('RANDOM')
-                        .addField('**Time Taken:**',msg + " ms")
-                        .addField('**WebSocket:**',api + " ms")
-message.channel.send({embed:embed});
-                        }
-                    });
 
 
 client.login(process.env.BOT_TOKEN);
+
