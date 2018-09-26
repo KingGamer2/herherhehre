@@ -1177,7 +1177,7 @@ client.on("message", message => {
         color: 0x06DF00,
         description: "تم مسح الرسائل بنجاح",
         footer: {
-          text: "{King_Bot}."
+          text: "{هيرو ميوزك}."
         }
       }}).then(msg => {msg.delete(3000)});
                           }
@@ -1833,7 +1833,7 @@ const Za7f = [
   var embed = new Discord.RichEmbed()
   .setColor('RANDOM')
    .setThumbnail(message.author.avatarURL)
- .addField('KinG Bot ♧' ,
+ .addField('هيرو ميوزك ♧' ,
   `${Za7f[Math.floor(Math.random() * Za7f.length)]}`)
   message.channel.sendEmbed(embed);
   console.log('[38ab] Send By: ' + message.author.username)
@@ -1894,7 +1894,7 @@ const Love = [  "**احبك / عدد قطرات المـــطر والشجر و
   var embed = new Discord.RichEmbed()
   .setColor('RANDOM')
    .setThumbnail(message.author.avatarURL)
- .addField('KinGBoT' ,
+ .addField('هيرو ميوزك' ,
   `${Love[Math.floor(Math.random() * Love.length)]}`)
   message.channel.sendEmbed(embed);
   console.log('[id] Send By: ' + message.author.username)
@@ -2004,7 +2004,7 @@ client.on('message', message => {
   .setThumbnail(message.author.avatarURL)  
   .setAuthor(message.author.username)
 .setDescription("معلومات عن الحــساب")
-               .setFooter(`{King_Bot}.`, '')
+               .setFooter(`{هيرو ميوزك}.`, '')
   .setColor("#9B59B6")
   .addField("اســـم الحســاب", `${message.author.username}`)
   .addField('كود الحساب الخاص', message.author.discriminator)
