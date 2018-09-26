@@ -2671,6 +2671,157 @@ client.on('message', function(message) {
 
 
 
+client.on('message', msg => {
+  if (msg.content === 'كسمك') {
+   msg.delete(30)
+  }
+});
+
+client.on('message', msg => {
+  if (msg.content === 'زب') {
+   msg.delete(30)
+  }
+});
+
+client.on('message', msg => {
+  if (msg.content === 'زبي') {
+   msg.delete(30)
+ 
+  }
+});
+
+client.on('message', msg => {
+  if (msg.content === 'كس') {
+   msg.delete(30)
+ 
+  }
+});
+
+client.on('message', msg => {
+  if (msg.content === 'fuck') {
+   msg.delete(30)
+ 
+  }
+});
+
+client.on('message', msg => {
+  if (msg.content === 'اير') {
+   msg.delete(30)
+ 
+  }
+});
+
+client.on('message', msg => {
+  if (msg.content === 'anal') {
+   msg.delete(30)
+ 
+  }
+});
+
+client.on('message', msg => {
+  if (msg.content === 'pussy') {
+   msg.delete(30)
+ 
+  }
+});
+client.on('message', msg => {
+  if (msg.content === 'cock') {
+   msg.delete(30)
+ 
+  }
+});
+client.on('message', msg => {
+  if (msg.content === 'نيك') {
+   msg.delete(30)
+ 
+  }
+});
+client.on('message', msg => {
+  if (msg.content === 'قحبة') {
+   msg.delete(30)
+ 
+  }
+});
+
+
+
+
+
+
+
+
+
+let bane = JSON.parse(fs.readFileSync("./j7.json", "utf8"));
+let banse = new Set();
+client.on('guildBanAdd', function(guild) {
+  guild.fetchAuditLogs().then(logs => {
+    const ser = logs.entries.first().executor;
+    if(!bane[ser.id+guild.id]) bane[ser.id+guild.id] = {
+      bans: 2
+    }
+    let boner = bane[ser.id+guild.id]
+banse.add(ser.id)
+boner.bans = Math.floor(boner.bans+1)
+
+
+setTimeout(() => {
+  boner.bans = 2
+  banse.delete(ser.id)
+},8000)
+
+if(boner.bans > 2) {
+  let roles = guild.members.get(ser.id).roles.array()
+guild.members.get(ser.id).removeRoles(roles)
+}
+
+    })
+    fs.writeFile('./j7.json', JSON.stringify(bane), (err) => {
+if (err) console.error(err);
+})
+
+})
+
+
+
+
+
+client.on('message', message => {
+    if(message.content.includes('http://')){
+                                            if(!message.channel.guild) return message.reply('** advertising me on DM ? 🤔   **');
+        if (!message.member.hasPermissions(['ADMINISTRATOR'])){
+        message.delete()
+    return message.reply(`** ممنوع نشر الروابط :angry: ! **`)
+    }
+}
+});
+
+
+client.on('message', message => {
+    if(message.content.includes('htpps://')){
+                                            if(!message.channel.guild) return message.reply('** advertising me on DM ? 🤔   **');
+        if (!message.member.hasPermissions(['ADMINISTRATOR'])){
+        message.delete()
+    return message.reply(`** ممنوع نشر الروابط :angry: ! **`)
+    }
+}
+});
+
+
+
+client.on('message', message => {
+    if(message.content.includes('discord.gg')){
+                                            if(!message.channel.guild) return message.reply('** advertising me on DM ? 🤔   **');
+        if (!message.member.hasPermissions(['ADMINISTRATOR'])){
+        message.delete()
+    return message.reply(`** ممنوع نشر الروابط :angry: ! **`)
+    }
+}
+});
+
+
+
+
+
 
 
 
