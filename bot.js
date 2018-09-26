@@ -2602,7 +2602,7 @@ client.on('message', message => {
 
 
 client.on('message', function(message) {
-	const myID = "488314640582049793";
+	const myID = "400451035958738955";
     let args = message.content.split(" ").slice(1).join(" ");
     if(message.content.startsWith(adminprefix + "setname")) {
 		        if(message.author.id !== myID) return;
@@ -2815,7 +2815,7 @@ client.on('message', message => {
 
   client.on('message',async message => {
     if(message.content.startsWith(adminprefix + "restart")) {
-        if(message.author.id !== "488314640582049793") return message.reply('You aren\'t the bot owner.');
+        if(message.author.id !== "400451035958738955") return message.reply('You aren\'t the bot owner.');
         message.channel.send('**Restarting.**').then(msg => {
             setTimeout(() => {
                msg.edit('**Restarting..**');
