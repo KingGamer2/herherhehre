@@ -256,8 +256,9 @@ if (message.content.startsWith(prefix + 'help')) { /// This is The DMS Code Send
 
         ***__أوامر العامة__***
 **
+${prefix}invite - لدعوة البوت الى سيرفرك
 ${prefix}server - معلومات عن سيرفرك 
-${prefix}id - الأيدي حقك 
+${prefix}id - معلومات عنك 
 ${prefix}avatar - صورة بروفايلك الشخصي 
 ${prefix}image - لعرض صورة السيرفر
 ${prefix}bot - معلومات عن البوت
@@ -451,7 +452,19 @@ Role : __${ar[message.guild.id].role}__`)
 
 })
 
-
+ client.on('message', message => {
+	   if(message.content.startsWith(`${prefix}invite`)){
+		   if(!message.channel.guild) return message.channel.send("This Command is Just For Servers!")
+		   var embed = new Discord.RichEmbed()
+		   .setTitle(">> ClickHere To Add" + `${client.user.username}` + " <<")
+		   .setURL("https://discordapp.com/oauth2/authorize?client_id=" + `${client.user.id}` + "&scope=bot&permissions=8")
+		   .setTimestamp()
+		   .setFooter(`Requested By | ${message.author.username}`)
+		   .setColor("RANDOM")
+		   message.channel.send(":white_check_mark: | Check Your DM! تم الأرسال بلخاص")
+		   message.author.send({embed})
+	   }
+   });
 
 
 
