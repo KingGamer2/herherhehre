@@ -251,12 +251,17 @@ function play(guild, song) {
 //////////////////////
 
 client.on('message', message => {
-    if(message.content.startsWith(prefix+'help')) {
-   const embed = new Discord.RichEmbed()
-.setColor('RANDOM')
-        .setDescription(`**
-		
-          General's Commands. 
+if (message.content.startsWith(prefix + 'help')) { /// This is The DMS Code Send The Help In DMS // Code By NotGucci
+    let pages = [`
+***__ملاحظة__***
+**
+بس هذول مش كل الاوامر 
+اكتب !help-list 
+لعرض قائمة الاوامر 
+او منشن البوت :heart:
+**
+        ***__أوامر العامة__***
+**
 ${prefix}server - معلومات عن سيرفرك 
 ${prefix}id - الأيدي حقك 
 ${prefix}avatar - صورة بروفايلك الشخصي 
@@ -275,8 +280,11 @@ ${prefix}report - عشان تبلغ عن شخص
 ${prefix}embed - البوت يحول التقوله لامبد
 ${prefix}short - لاختصار الروابط
 ${prefix}roles - يعرض لك كل رولات السيرفر
-         
-        Admin's Commands.  
+**
+  `
+,`
+        ***__أوامر الأدمن__***
+**
 ${prefix}ban - لحظر شخص من السيرفر
 ${prefix}unban - لفك الحظر من شخص
 ${prefix}tempban - لحظر شخص لكن بوقت محدد
@@ -299,25 +307,88 @@ ${prefix}autorole toggle  - عشان تفعل الautorole
 ${prefix}autorole set - عشان تحط الرتبة الي اول ما احد يدخل ياخذها
 ${prefix}giveaway - حتى تسوي قيف اوي
 ${prefix}say - يقول البوت التقوله ويحذف رسالتك
+**
+   `,`
+        ***__أوامر الموسيفة__***
+**
+!play - لتشغيل أغنية برآبط أو بأسم
+!skip - لتجآوز الأغنية الحآلية
+!pause - إيقآف الأغنية مؤقتا
+!resume - لموآصلة الإغنية بعد إيقآفهآ مؤقتا
+!vol - لتغيير درجة الصوت 100 - 0』
+!stop - لإخرآج البوت من الروم
+!np - لمعرفة الأغنية المشغلة حآليا
+!queue - لمعرفة قآئمة التشغيل
+**
+   `,`
+        ***__أوامر الالوان__***
+**
+!colors - لعرض قائمة الألوان
+!createcolors - لأنشاء 50 لون
+!setColor -لتحط ايا لون من هول الالوان اكتب الأمر و الرقم من 1 ل50 انت اختر
+**
+ `,`
+        ***__أوامر الالعاب__***
+**       
+!rps - حجر ورقة مقص
+!اسرع كتابة- كتابة
+!لعبة الرياضيات - رياصيات
+!نكت - نكت 
+!لعبة فكك - فكك
+!عواصم عشوائي-عواصم
+!xo-لعبة اكس او 
+!لعبة ركب - ركب
+!slots - لعبة الإيموجي
+!فوائد ونصائح  - هل تعلم
+!يعطيك عقابات قاسية - عقاب 
+!roll <number> - لعمل قرعة 
+!لعبة لغز - لغز 
+!لعبة خواطر - خواطر
+!لعبة  حب - حب
+**
+   
+`]
+    let page = 1;
 
-        Games Commands.  
-『!rps / حجر ورقة مقص』
-『!اسرع كتابة/ كتابة』
-『!لعبة الرياضيات / رياصيات』
-『!لعبة فكك / فكك』
-『!عواصم عشوائي/عواصم』
-『!xo/لعبة اكس او 』
-『!لعبة ركب / ركب』
-『!slots / لعبة الإيموجي』
-『!يعطيك عقابات قاسية / عقاب 』
-『!roll <number> / لعمل قرعة 』
-『!لعبة لغز / لغز 』
-『!لعبة خواطر / خواطر』
-『!لعبة  حب / حب』
-**`)
-    message.author.send(embed)
-}
-});  
+    let embed = new Discord.RichEmbed()
+    .setColor('RANDOM')
+    .setFooter(`Page ${page} of ${pages.length}`)
+    .setDescription(pages[page-1])
+
+    message.author.sendEmbed(embed).then(msg => {
+
+        msg.react('◀').then( r => {
+            msg.react('▶')
+
+
+        const backwardsFilter = (reaction, user) => reaction.emoji.name === '◀' && user.id === message.author.id;
+        const forwardsFilter = (reaction, user) => reaction.emoji.name === '▶' && user.id === message.author.id;
+
+
+        const backwards = msg.createReactionCollector(backwardsFilter, { time: 2000000});
+        const forwards = msg.createReactionCollector(forwardsFilter, { time: 2000000});
+
+
+
+        backwards.on('collect', r => {
+            if (page === 1) return;
+            page--;
+            embed.setDescription(pages[page-1]);
+            embed.setFooter(`Page ${page} of ${pages.length}`);
+            msg.edit(embed)
+        })
+        forwards.on('collect', r => {
+            if (page === pages.length) return;
+      
+      page++;
+            embed.setDescription(pages[page-1]);
+            embed.setFooter(`Page ${page} of ${pages.length}`);
+            msg.edit(embed)
+        })
+        })
+    })
+    }
+}); 
 client.on('message', message => {
      if (message.content === (prefix + "help")) {
      let embed = new Discord.RichEmbed()
