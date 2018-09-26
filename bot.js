@@ -242,6 +242,7 @@ function play(guild, song) {
 
 	serverQueue.textChannel.send(`**${song.title}**, is now playing!`);
 }
+
 /////////////////////////
 ////////////////////////
 //////////////////////
@@ -1893,6 +1894,7 @@ client.on('message', message => { //bot
 
 
 
+client.on('message', message => {
      if (message.author.bot) return;
 if (message.content.startsWith(prefix + "uptime")) {
     let uptime = client.uptime;
@@ -1933,8 +1935,8 @@ if (message.content.startsWith(prefix + "uptime")) {
     message.channel.send("`" + `${days} days, ${hours} hrs, ${minutes} , ${seconds} sec` + "`");
 
 
-};
-
+}
+});
 
 
 
@@ -2500,7 +2502,33 @@ Sender <@${message.author.id}>                                                  
 });
 
 
-
+client.on('message', message => {
+    if(message.content.includes('discord.gg')){
+                                            if(!message.channel.guild) return message.reply('** advertising me on DM ? 🤔   **');
+        if (!message.member.hasPermissions(['ADMINISTRATOR'])){
+        message.delete()
+    return message.reply(`** ممنوع نشر الروابط :angry: ! **`)
+    }
+}
+});
+client.on('message', message => {
+    if(message.content.includes('https://')){
+                                            if(!message.channel.guild) return message.reply('** advertising me on DM ? 🤔   **');
+        if (!message.member.hasPermissions(['ADMINISTRATOR'])){
+        message.delete()
+    return message.reply(`** ممنوع نشر الروابط :angry: ! **`)
+    }
+}
+});
+client.on('message', message => {
+    if(message.content.includes('http://')){
+                                            if(!message.channel.guild) return message.reply('** advertising me on DM ? 🤔   **');
+        if (!message.member.hasPermissions(['ADMINISTRATOR'])){
+        message.delete()
+    return message.reply(`** ممنوع نشر الروابط :angry: ! **`)
+    }
+}
+});
 
 
 
@@ -2594,7 +2622,8 @@ client.on('message', function(message) {
             client.destroy();
 client.login(process.env.BOT_TOKEN);
         },3000);
-    }
+		}
 });
+
 
 client.login(process.env.BOT_TOKEN);
