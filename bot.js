@@ -481,7 +481,7 @@ if (!games[getvalueof.id]) games[getvalueof.id] = {wins: 0,loses: 0,points: 0,to
                         
 
                         //Avatar
-                       let Avatar = Canvas.Image;
+                       let Avatar = canvas.Image;
                         let ava = new Avatar;
                         ava.src = buf;
                      ctx.drawImage(ava, 8, 43, 80, 85); // احداثيات صورتك
