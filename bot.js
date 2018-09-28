@@ -21,7 +21,7 @@ const pprefix = "R"
 //////////////////////
 client.on('message', async msg => { 
 	if (msg.author.bot) return undefined;
-    
+if (!msg.content.startsWith(prefix)) return undefined;
     const args = msg.content.split(' ');
 	const searchString = args.slice(1).join(' ');
     
@@ -112,7 +112,6 @@ client.on('message', async msg => {
         }
         
 	} else 
-if (!msg.content.startsWith(prefix)) return undefined;
 if (command === `skip`) {
 		if (!msg.member.voiceChannel) return msg.channel.send("You Must be in a Voice channel to Run the Music commands!");
         if (!serverQueue) return msg.channel.send("There is no Queue to skip!!");
