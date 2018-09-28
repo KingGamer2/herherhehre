@@ -299,8 +299,6 @@ ${prefix}mutechannel - عشان تخلي ما فيه احد يقدر يكتب ف
 ${prefix}unmutechannel - عشان ترجع الناس تقدر تكتب في الروم الي كتمته
 ${prefix}1bc - لعمل برودكاست بريئاكشن
 ${prefix}2bc - لعمل برودكاست عادي
-${prefix}dc - لحذف كل الرومات
-${prefix}dr <مسح كل الرتب  - <لازم تكون رانك البوت فوق كل الرانكات
 ${prefix}delete <name> - لهذف روم صوت او شات 
 ${prefix}role - لعرض قائمة بجميع اوامر الرتب
 ${prefix}autorole toggle  - عشان تفعل الautorole
@@ -311,15 +309,15 @@ ${prefix}say - يقول البوت التقوله ويحذف رسالتك
    `,`
         ***__أوامر الموسيفة__***
 **
-!play - لتشغيل أغنية برآبط أو بأسم
-!come - حتى تثبت البوت بروم
-!skip - لتجآوز الأغنية الحآلية
-!pause - إيقآف الأغنية مؤقتا
-!resume - لموآصلة الإغنية بعد إيقآفهآ مؤقتا
-!vol - لتغيير درجة الصوت 100 - 0』
-!stop - لإخرآج البوت من الروم
-!np - لمعرفة الأغنية المشغلة حآليا
-!queue - لمعرفة قآئمة التشغيل
+Rplay - لتشغيل أغنية برآبط أو بأسم
+Rcome - حتى تثبت البوت بروم
+Rskip - لتجآوز الأغنية الحآلية
+Rpause - إيقآف الأغنية مؤقتا
+Rresume - لموآصلة الإغنية بعد إيقآفهآ مؤقتا
+Rvol - لتغيير درجة الصوت 100 - 0』
+Rstop - لإخرآج البوت من الروم
+Rnp - لمعرفة الأغنية المشغلة حآليا
+Rqueue - لمعرفة قآئمة التشغيل
 **
    `,`
         ***__أوامر الالعاب__***
@@ -1192,25 +1190,7 @@ client.on("message", message => {
      
 });
 
-client.on('message', omar => {
-if(omar.content.split(' ')[0] == prefix + 'dc') {  // delete all channels
-if (!omar.channel.guild) return;
-if(!omar.guild.member(omar.author).hasPermission("MANAGE_CHANNELS")) return omar.reply("**You Don't Have ` MANAGE_CHANNELS ` Permission**");
-if(!omar.guild.member(client.user).hasPermission("MANAGE_CHANNELS")) return omar.reply("**I Don't Have ` MANAGE_CHANNELS ` Permission**");
-omar.guild.channels.forEach(m => {
-m.delete();
-});// omar jedol / Codes
-}// omar jedol / Codes
-if(omar.content.split(' ')[0] == prefix + 'dr') { // delete all roles
-if (!omar.channel.guild) return;
-if(!omar.guild.member(omar.author).hasPermission("MANAGE_ROLES_OR_PERMISSIONS")) return omar.reply("**You Don't Have ` MANAGE_ROLES_OR_PERMISSIONS ` Permission**");
-if(!omar.guild.member(client.user).hasPermission("MANAGE_ROLES_OR_PERMISSIONS")) return omar.reply("**I Don't Have ` MANAGE_ROLES_OR_PERMISSIONS ` Permission**");
-omar.guild.roles.forEach(m => {
-m.delete();
-});// omar jedol / Codes
-omar.reply("`تم حذف جميع الرتب بنجاح`")
-}// omar jedol / Codes
-});
+
 
 
 
@@ -2349,7 +2329,7 @@ let welcomer = member.guild.channels.find("name","welcome1");
 
 
 client.on('message', message => {
- if(message.content.startsWith(prefix + "come")) {
+ if(message.content.startsWith(mprefix + "come")) {
 message.member.voiceChannel.join();
 }
 });
