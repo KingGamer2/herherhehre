@@ -12,6 +12,7 @@ const fs = require('fs');
 const gif = require("gif-search");
 const prefix = "!";
 const adminprefix = "-"
+const playprefix = "R"
 /////////////////////////
 ////////////////////////
 //////////////////////
@@ -31,7 +32,7 @@ client.on('message', async msg => {
 	let command = msg.content.toLowerCase().split(" ")[0];
 	command = command.slice(prefix.length)
 
-	if (command === `play`) {
+	if (command === playprefix + `play`) {
 		const voiceChannel = msg.member.voiceChannel;
         
         if (!voiceChannel) return msg.channel.send("I can't find you in any voice channel!");
@@ -258,7 +259,12 @@ if (message.content.startsWith(prefix + 'help')) { /// This is The DMS Code Send
 **
 ${prefix}invite - لدعوة البوت الى سيرفرك
 ${prefix}server - معلومات عن سيرفرك 
-${prefix}id - معلومات عنك 
+${prefix}id - معلومات عنك بصورة
+${prefix}2id - معلومات عنك 
+${prefix}profile - بروفايلك الشخصي
+${prefix}credits - لتشوف كم كردت عندك
+${prefix}daily - لتاخذ الكردت اليومي
+${prefix}rep - تعطي reputation point
 ${prefix}avatar - صورة بروفايلك الشخصي 
 ${prefix}image - لعرض صورة السيرفر
 ${prefix}bot - معلومات عن البوت
@@ -385,6 +391,378 @@ client.on('message', message => {
   message.channel.sendEmbed(embed);
     }
 });
+
+
+
+
+
+
+
+
+client.on("message", message => {
+  if (message.author.bot) return;
+	if(!message.channel.guild) return;       
+if (message.content.startsWith(prefix + "profile")) {
+                               let user = message.mentions.users.first();
+         var men = message.mentions.users.first();
+            var heg;
+            if(men) {
+                heg = men
+            } else {
+                heg = message.author
+            }
+          var mentionned = message.mentions.members.first();
+             var h;
+            if(mentionned) {
+                h = mentionned
+            } else {
+                h = message.member
+            }
+            var ment = message.mentions.users.first();
+            var getvalueof;
+            if(ment) {
+              getvalueof = ment;
+            } else {
+              getvalueof = message.author;
+            }//var ghost = tf 3lek xD
+   var mentionned = message.mentions.users.first();
+
+    var client;
+      if(mentionned){
+          var client = mentionned;
+      } else {
+          var client = message.author;
+          
+      }
+  const w = ['./PicsArt_08-28-06.21.07.png'];
+if (!games[getvalueof.id]) games[getvalueof.id] = {wins: 0,loses: 0,points: 0,total: 0,credits: 100,level: 1,};          
+            let Image = Canvas.Image,
+            canvas = new Canvas(300, 300),
+            ctx = canvas.getContext('2d');       
+      fs.readFile(`${dataPro[getvalueof.id].wallSrc}`, function (err, Background) {
+          fs.readFile(`${w[0]}`, function (err, Background) {
+          if (err) return console.log(err);
+          let BG = Canvas.Image;
+          let ground = new Image;
+          ground.src = Background;
+          ctx.drawImage(ground, 0, 0, 297, 305);
+});
+          if (err) return console.log(err);
+          let BG = Canvas.Image;
+          let ground = new Image;
+          ground.src = Background;
+          ctx.drawImage(ground, 0, 0, 300, 305);
+});
+
+
+
+                let url = getvalueof.displayAvatarURL.endsWith(".webp") ? getvalueof.displayAvatarURL.slice(5, -20) + ".png" : getvalueof.displayAvatarURL;
+                jimp.read(url, (err, ava) => {
+                    if (err) return console.log(err);
+                    ava.getBuffer(jimp.MIME_PNG, (err, buf) => {
+                        if (err) return console.log(err);
+                        
+
+                        //Avatar
+                       let Avatar = Canvas.Image;
+                        let ava = new Avatar;
+                        ava.src = buf;
+                     ctx.drawImage(ava, 8, 43, 80, 85); // احداثيات صورتك
+                        
+                        //ur name
+                        ctx.font = 'bold 16px Arial'; // حجم الخط و نوعه
+                        ctx.fontSize = '40px'; // عرض الخط
+                        ctx.fillStyle = "#000000"; // لون الخط
+                        ctx.textAlign = "left"; // محاذا ة النص
+                        ctx.fillText(`${getvalueof.username}`, 130, 125) // احداثيات اسمك          
+
+                         //bord
+                        ctx.font = "regular 12px Cairo" // نوع الخط وحجمه
+                        ctx.fontSize = '50px'; // عرض الخط
+                        ctx.fillStyle = "#f0ff00" // لون الخط    
+                        ctx.textAlign = "left"; // محاذا ة النص
+                        ctx.fillText(`Soon...`, 170, 198) // احداثيات ترتيبك
+                        
+                        //credit
+                        ctx.font = "bold 10px Arial" // نوع الخط وحجمه
+                        ctx.fontSize = '10px'; // عرض الخط
+                        ctx.fillStyle = '#FFFFFF' // لون الخط  
+                        ctx.textAlign = "left"; // محاذا ة النص
+                        ctx.fillText(`$ ${games[getvalueof.id].credits}`, 156, 163) // احداثيات المصاري                        
+                        
+                        //poits
+                        ctx.font = "bold 13px Arial" // ن
+                        ctx.fontSize = '10px'; // عرض الخطوع الخط وحجمه
+                        ctx.fillStyle = "#FFFFFF" // لون الخط 
+                        ctx.textAlign = "left"; // محاذا ة النص
+                        ctx.fillText(`${profile[getvalueof.id].points}`, 173, 182) // احداثيات النقاط
+
+                        //Level
+                        ctx.font = "bold 27px Arial" // نوع الخط و حجمه
+                        ctx.fontSize = '50px'; // عرض الخط
+                        ctx.fillStyle = "#FFFFFF" // لون الخط
+                        ctx.textAlign = "left"; // محاذا ة النص
+                        ctx.fillText(`${profile[getvalueof.id].level}`, 30, 200) // احداثيات اللفل
+                       
+                        //info
+                        ctx.font = "blod 13px Arial" // ن
+                        ctx.fontSize = '10px'; // عرض الخطوع الخط وحجمه
+                        ctx.fillStyle = "#FFFFFF" // لون الخط 
+                        ctx.textAlign = "left"; // محاذا ة النص
+                        ctx.fillText(`${profile[getvalueof.id].info}`, 118, 40) // احداثيات النقاط
+
+                        // REP
+                        ctx.font = "bold 27px Arial";
+                        ctx.fontSize = "100px";
+                        ctx.fillStyle = "#FFFFFF";
+                        ctx.textAlign = "left";
+                        ctx.fillText(`+${profile[getvalueof.id].rep}`, 18,270)
+                      
+message.channel.sendFile(canvas.toBuffer())
+})
+})
+}
+
+});
+
+client.on('message', message => {
+    
+if(message.content.split(' ')[0] == prefix + 'id') {
+if(!message.channel.guild) return;
+
+let args = message.content.split(' ').slice(1).join(' ');
+
+       let defineduser = '';
+       if (!args[1]) { 
+           defineduser = message.author;
+       } else { // Run this if they did define someone...
+           let firstMentioned = message.mentions.users.first();
+           defineduser = firstMentioned;
+       }
+
+       const w = ['./id5.png','./id6.png'];
+       var Canvas = require('canvas')
+var jimp = require('jimp')
+
+        const millis = new Date().getTime() - defineduser.createdAt.getTime();
+const now = new Date();
+dateFormat(now, 'dddd, mmmm dS, yyyy');
+const stats2 = ['online', 'Low', 'Medium', 'Insane'];
+const days = millis / 1000 / 60 / 60 / 24;
+         dateFormat(now, 'dddd, mmmm dS, yyyy');
+             let time = `${dateFormat(defineduser.createdAt)}`
+             var heg;
+             if(men) {
+                 heg = men
+             } else {
+                 heg = message.author
+             }
+            var mentionned = message.mentions.members.first();
+              var h;
+             if(mentionned) {
+                 h = mentionned
+             } else {
+                 h = message.member
+             }
+       let Image = Canvas.Image,
+           canvas = new Canvas(300, 300),
+           ctx = canvas.getContext('2d');
+       ctx.patternQuality = 'bilinear';
+       ctx.filter = 'bilinear';
+       ctx.antialias = 'subpixel';
+ 
+       fs.readFile(`${w[Math.floor(Math.random() * w.length)]}`, function (err, Background) {
+           if (err) return console.log(err);
+           let BG = Canvas.Image;
+           let ground = new Image;
+           ground.src = Background;
+           ctx.drawImage(ground, 0, 0, 300, 300);
+
+})
+  var mentionned = message.mentions.users.first();
+
+   var client;
+     if(mentionned){
+         var client = mentionned;
+     } else {
+         var client = message.author;
+         
+     }
+
+var men = message.mentions.users.first();
+           var heg;
+           if(men) {
+               heg = men
+           } else {
+               heg = message.author
+           }
+               let url = defineduser.displayAvatarURL.endsWith(".webp") ? defineduser.displayAvatarURL.slice(20, 20) + ".png" : defineduser.displayAvatarURL;
+               jimp.read(url, (err, ava) => {
+                   if (err) return console.log(err);
+                   ava.getBuffer(jimp.MIME_PNG, (err, buf) => {
+                       if (err) return console.log(err);
+
+                       let Avatar = Canvas.Image;
+                       let ava = new Avatar;
+                       ava.src = buf;
+                       ctx.drawImage(ava, 112 , 40, 75, 75);
+                       
+                       
+                       
+                       
+                       var status;
+   if (defineduser.presence.status === 'online') {
+       status = 'ONLINE';
+ctx.fillStyle = `#2ce032`;
+ctx.beginPath();
+ctx.arc(179, 107, 10, 0, Math.PI*2, true); 
+ctx.closePath();
+ctx.fill();
+ 
+   } else if (defineduser.presence.status === 'dnd') {
+       status = 'DND';
+       ctx.fillStyle = `#ff0000`;
+ctx.beginPath();
+ctx.arc(179, 107, 8, 0, Math.PI*2, true); 
+ctx.closePath();
+ctx.fill();
+   } else if (defineduser.presence.status === 'idle') {
+       status = 'IDLE';
+       ctx.fillStyle = `#f4d32e`;
+ctx.beginPath();
+ctx.arc(179, 107, 10, 0, Math.PI*2, true); 
+ctx.closePath();
+ctx.fill();
+   } else if (defineduser.presence.status === 'offline') {
+       status = 'INVISIABLE';
+       ctx.fillStyle = `#898988`;
+ctx.beginPath();
+ctx.arc(179, 107, 10, 0, Math.PI*2, true); 
+ctx.closePath();
+ctx.fill();
+   }
+                       
+                       
+                                             var time2;
+     if(mentionned){
+         var time2 = `${dateFormat(message.mentions.users.first.joinedAt)}`;
+     } else {
+         var time2 = `${dateFormat(message.member.joinedAt)}`;
+         
+     }  
+                          
+   
+                       ctx.font = 'Bold 15px Arial ';
+                       ctx.fontSize = '15px';
+                       ctx.fillStyle = "#ffffff";
+                       ctx.textAlign = "center";
+                       ctx.fillText(status, 70 , 108 );
+                       
+                        ctx.font = 'Bold 13px Arial';
+                       ctx.fontSize = '13px';
+                       ctx.fillStyle = "#ffffff";
+                       ctx.textAlign = "center";
+                       ctx.fillText(`${message.author.presence.game === null ? "No Status" : message.author.presence.game.name}`, 150.00   , 180  );
+
+                      
+                       ctx.font = 'Bold 20px Arial ';
+                       ctx.fontSize = '15px';
+                       ctx.fillStyle = "#ffffff";
+                       ctx.textAlign = "center";
+                       ctx.fillText(`${defineduser.username}`, 150.50 , 140);
+
+
+                       ctx.font = 'Bold 15px Arial';
+                       ctx.fontSize = '15px';
+                       ctx.fillStyle = "#ffffff";
+                       ctx.textAlign = "center";
+                       ctx.fillText(`#${defineduser.discriminator}`, 227  , 108);
+
+                       var time2;
+     if(mentionned){
+         var time2 = `${dateFormat(message.mentions.users.first.joinedAt)}`;
+     } else {
+         var time2 = `${dateFormat(message.member.joinedAt)}`;
+         
+     }
+
+                       ctx.font = 'Bold 13px Arial ';
+                       ctx.fontSize = '13px';
+                       ctx.fillStyle = "#ffffff";
+                       ctx.textAlign = "center";
+                       ctx.fillText(`${moment(defineduser.createdTimestamp).fromNow()}`, 179 , 226 );
+                       
+                       
+    
+          
+                       ctx.font = 'Bold 13px Arial ';
+                       ctx.fontSize = '13px';
+                       ctx.fillStyle = "#ffffff";
+                       ctx.textAlign = "center";
+                       ctx.fillText(`${moment(h.joinedAt).format('YYYY/M/D HH:mm:ss')}`, 179 , 253);
+                       
+message.channel.sendFile(canvas.toBuffer())
+
+
+       })
+   })
+
+
+
+
+}
+
+})		
+client.on("message", (message) => {
+  var sender = message.author
+if(message.content.startsWith(prefix + 'daily')) {
+if (games[sender.id].lastDaily != moment().format('day')) {
+    games[sender.id].lastDaily = moment().format('day')
+ games[message.author.id].credits += 200;
+    message.channel.send(`**${message.author.username} you collect your \`200\` :dollar: daily pounds**`)
+} else {
+    message.channel.send(`**:stopwatch: | ${message.author.username}, your daily :yen: credits refreshes ${moment().endOf('day').fromNow()}**`)
+}
+}
+})
+//مصاري//
+client.on("message", (message) => {
+  if (message.author.bot) return;
+    if (message.author.id === client.user.id) return;
+	if(!message.channel.guild) return;       
+if (message.content === prfix + 'credits') {
+message.channel.send(`** ${message.author.username}, your :credit_card: balance is ${games[message.author.id].credits}.**`)
+}
+});
+
+client.on('message', message => {
+  if (message.author.bot) return;
+    if (message.author.id === client.user.id) return;
+	if(!message.channel.guild) return;       
+    if(message.content.startsWith(prefix+ 'rep')) {
+    let ment = message.mentions.users.first()  
+    if(!ment) return message.channel.send(`**:mag: |  ${message.author.username}, the user could not be found.    **`);
+    if(profile[message.author.id].reps != (new Date).getTime());{
+    profile[message.author.id].reps =  profile[message.author.id].reps = (new Date).getTime();
+    profile[ment.id].rep += 1; 
+    message.channel.send(`** :up:  |  ${message.author.username} has given ${ment} a reputation point!**`).then(()=> profile[message.author.id].lastDaily = (new Date).getTime());
+    }
+    	if(profile[message.author.id].reps && (new Date).getTime() - message.mentions.users.first() < 60*1000*60*24) {
+        let r = (new Date).getTime() - profile[message.author.id].reps;
+          r = 60*1000*60*24 - r;
+        return message.channel.send(`:stopwatch: |  ${message.author.username}, you can award more reputation in ${pretty(r, {verbose:true})}`);
+	}
+    }
+    });
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2012,7 +2390,7 @@ if (message.content.startsWith(prefix + "uptime")) {
 
 
 client.on('message', message => {
-     if (message.content === prefix + "id") {
+     if (message.content === prefix + "2id") {
      let embed = new Discord.RichEmbed()
   .setThumbnail(message.author.avatarURL)  
   .setAuthor(message.author.username)
