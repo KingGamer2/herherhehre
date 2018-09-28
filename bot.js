@@ -15,6 +15,22 @@ const adminprefix = "-"
 const playprefix = "R"
 /////////////////////////
 ////////////////////////
+
+
+const games = JSON.parse(fs.readFileSync('./games.json', "utf8"));
+client.on("message", message => {
+  if (message.author.bot) return;
+  if (!message.channel.guild) return;
+  if (!games[message.author.id]) games[message.author.id] = {
+    credits: 100,
+    level: 1,
+  };
+fs.writeFile('./games.json', JSON.stringify(games), (err) => {
+if (err) console.error(err);
+});
+});
+
+
 //////////////////////
 /////////////////////////
 ////////////////////////
