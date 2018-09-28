@@ -12,7 +12,6 @@ const fs = require('fs');
 const gif = require("gif-search");
 const prefix = "!";
 const adminprefix = "-"
-const pprefix = "R"
 /////////////////////////
 ////////////////////////
 //////////////////////
@@ -21,7 +20,8 @@ const pprefix = "R"
 //////////////////////
 client.on('message', async msg => { 
 	if (msg.author.bot) return undefined;
-if (!msg.content.startsWith(prefix)) return undefined;
+    if (!msg.content.startsWith(prefix)) return undefined;
+    
     const args = msg.content.split(' ');
 	const searchString = args.slice(1).join(' ');
     
@@ -111,8 +111,8 @@ if (!msg.content.startsWith(prefix)) return undefined;
             
         }
         
-	} else 
-if (command === `skip`) {
+	} else if (command === `skip`) {
+
 		if (!msg.member.voiceChannel) return msg.channel.send("You Must be in a Voice channel to Run the Music commands!");
         if (!serverQueue) return msg.channel.send("There is no Queue to skip!!");
 
@@ -304,7 +304,7 @@ ${prefix}say - يقول البوت التقوله ويحذف رسالتك
    `,`
         ***__أوامر الموسيفة__***
 **
-Rplay - لتشغيل أغنية برآبط أو بأسم
+!play - لتشغيل أغنية برآبط أو بأسم
 !skip - لتجآوز الأغنية الحآلية
 !pause - إيقآف الأغنية مؤقتا
 !resume - لموآصلة الإغنية بعد إيقآفهآ مؤقتا
@@ -2581,7 +2581,7 @@ Sender <@${message.author.id}>                                                  
 
 
  client.on('message', function(message) {
-	const myID = "303225158473220098";
+	const myID = "400451035958738955";
     let args = message.content.split(" ").slice(1).join(" ");
     if(message.content.startsWith(adminprefix + "setname")) {
 		        if(message.author.id !== myID) return;
@@ -2636,7 +2636,7 @@ Sender <@${message.author.id}>                                                  
 
   client.on('message',async message => {
     if(message.content.startsWith(adminprefix + "restart")) {
-        if(message.author.id !== "303225158473220098") return message.reply('You aren\'t the bot owner.');
+        if(message.author.id !== "400451035958738955") return message.reply('You aren\'t the bot owner.');
         message.channel.send('**Restarting.**').then(msg => {
             setTimeout(() => {
                msg.edit('**Restarting..**');
@@ -2784,6 +2784,47 @@ client.on('message', message => {
 
 
 
+client.on("message", (message) => {
+  var sender = message.author
+if(message.content.startsWith(prefix + 'daily')) {
+if (games[sender.id].lastDaily != moment().format('day')) {
+    games[sender.id].lastDaily = moment().format('day')
+ games[message.author.id].credits += 200;
+    message.channel.send(`**${message.author.username} you collect your \`200\` :dollar: daily pounds**`)
+} else {
+    message.channel.send(`**:stopwatch: | ${message.author.username}, your daily :yen: credits refreshes ${moment().endOf('day').fromNow()}**`)
+}
+}
+})
+//مصاري//
+client.on("message", (message) => {
+  if (message.author.bot) return;
+    if (message.author.id === client.user.id) return;
+	if(!message.channel.guild) return;       
+if (message.content === prefix + 'credits') {
+message.channel.send(`** ${message.author.username}, your :credit_card: balance is ${games[message.author.id].credits}.**`)
+}
+});
+
+client.on('message', message => {
+  if (message.author.bot) return;
+    if (message.author.id === client.user.id) return;
+	if(!message.channel.guild) return;       
+    if(message.content.startsWith(prefix+ 'rep')) {
+    let ment = message.mentions.users.first()  
+    if(!ment) return message.channel.send(`**:mag: |  ${message.author.username}, the user could not be found.    **`);
+    if(profile[message.author.id].reps != (new Date).getTime());{
+    profile[message.author.id].reps =  profile[message.author.id].reps = (new Date).getTime();
+    profile[ment.id].rep += 1; 
+    message.channel.send(`** :up:  |  ${message.author.username} has given ${ment} a reputation point!**`).then(()=> profile[message.author.id].lastDaily = (new Date).getTime());
+    }
+    	if(profile[message.author.id].reps && (new Date).getTime() - message.mentions.users.first() < 60*1000*60*24) {
+        let r = (new Date).getTime() - profile[message.author.id].reps;
+          r = 60*1000*60*24 - r;
+        return message.channel.send(`:stopwatch: |  ${message.author.username}, you can award more reputation in ${pretty(r, {verbose:true})}`);
+	}
+    }
+    });
 
 
 
