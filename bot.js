@@ -311,6 +311,7 @@ ${prefix}say - يقول البوت التقوله ويحذف رسالتك
         ***__أوامر الموسيفة__***
 **
 !play - لتشغيل أغنية برآبط أو بأسم
+!come - حتى تثبت البوت بروم
 !skip - لتجآوز الأغنية الحآلية
 !pause - إيقآف الأغنية مؤقتا
 !resume - لموآصلة الإغنية بعد إيقآفهآ مؤقتا
@@ -2446,7 +2447,7 @@ client.on('messageUpdate', (message, newMessage) => {
        .setDescription(`✏ **Message Edited
 Sender <@${message.author.id}>                                                                                                                         Edited In** <#${message.channel.id}>\n\nBefore Edited:\n \`${message.cleanContent}\`\n\nAfter Edited:\n \`${newMessage.cleanContent}\``)
        .setTimestamp();
-     channel.send({embed:embed});
+     channel.send({embed});
  });
  client.on('messageDelete', message => {
     if (!message || !message.id || !message.content || !message.guild || message.author.bot) return;
@@ -2459,7 +2460,7 @@ Sender <@${message.author.id}>                                                  
        .setDescription(`🗑️ **Message Deleted**
 **Sender <@${message.author.id}>                                                                                                                        Deleted In** <#${message.channel.id}>\n\n \`${message.cleanContent}\``)
        .setTimestamp();
-     channel.send({embed:embed});
+     channel.send({embed});
  });
  client.on('guildMemberAdd', member => {
     if (!member || !member.id || !member.guild) return;
@@ -2477,7 +2478,7 @@ Sender <@${message.author.id}>                                                  
        .setColor('RANDOM')
        .setDescription(`📥 <@${member.user.id}> **Joined To The Server**\n\n`)
        .setTimestamp();
-     channel.send({embed:embed});
+     channel.send({embed});
 });
  client.on('guildMemberRemove', member => {
     if (!member || !member.id || !member.guild) return;
@@ -2494,7 +2495,7 @@ Sender <@${message.author.id}>                                                  
        .setColor('RAMDOM')
        .setDescription(`📤 <@${member.user.id}> **Leave From Server**\n\n`)
        .setTimestamp();
-     channel.send({embed:embed});
+     channel.send({embed});
 });
  client.on('voiceStateUpdate', (oldM, newM) => {
   let m1 = oldM.serverMute;
@@ -2574,7 +2575,11 @@ Sender <@${message.author.id}>                                                  
 
 
 
-
+client.on('message', message => {
+ if(message.content.startsWith(prefix + "come")) {
+message.member.voiceChannel.join();
+}
+});
 
 
 
